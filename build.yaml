@@ -1,0 +1,37 @@
+
+targets:
+  $default:
+    builders:
+      dev_tools|app_module:
+        enabled: true
+        generate_for:
+          exclude:
+            - test
+            - example
+          include:
+            - lib/app/**.dart
+            - lib/bootstrap/**.dart
+      dev_tools|app_module_list:
+        enabled: true
+        generate_for:
+          exclude:
+            - test
+            - example
+          include:
+            - lib/app/**.dart
+            - lib/bootstrap/**.dart
+builders:
+  app_module:
+    import: 'package:dev_tools/framework/module/build/builder.dart'
+    builder_factories: ['appModuleBuilder']
+    build_extensions: { '.dart': ['*.g.dart'] }
+    auto_apply: root_package
+    build_to: cache
+    runs_before: ['dev_tools|app_module_list']
+
+  app_module_list:
+    import: 'package:dev_tools/framework/module/build/builder.dart'
+    builder_factories: [ 'appModuleListBuilder' ]
+    build_extensions:  { ".dart": [".mod.dart"] }
+    auto_apply: dependents
+    build_to: source
