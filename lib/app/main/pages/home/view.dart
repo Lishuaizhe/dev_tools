@@ -1,10 +1,10 @@
 import 'package:bruno/bruno.dart';
-import 'package:dev_tools/app/my/pages/my/view.dart';
-import 'package:dev_tools/app/one/pages/one/view.dart';
-import 'package:dev_tools/app/tools/pages/tools/view.dart';
+import 'package:dev_tools/app/about/pages/about_home/about_home_view.dart';
+import 'package:dev_tools/app/information/pages/information_home/information_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../knowledge/pages/knowledge_home/knowledge_home_view.dart';
 import 'logic.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,14 +26,10 @@ class HomePage extends StatelessWidget {
       top: false,
       bottom: false,
       child: PageView(
-        // physics: const NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         controller: logic.pageController,
         onPageChanged: logic.onPageChanged,
-        children: [
-          OnePage(),
-          ToolsPage(),
-          MyPage(),
-        ],
+        children: [InformationHomePage(), KnowledgeHomePage(), AboutHomePage()],
       ),
     );
   }
@@ -41,7 +37,6 @@ class HomePage extends StatelessWidget {
   Widget _bottomNavigationBar() {
     return Obx(() {
       return BrnBottomTabBar(
-        fixedColor: Colors.blueAccent,
         currentIndex: state.tagIndex.value,
         onTap: logic.onBottomTabBarTap,
         isAnimation: true,

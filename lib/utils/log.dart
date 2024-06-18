@@ -1,11 +1,9 @@
-
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 enum LogLevel {
   verbose,
@@ -20,7 +18,6 @@ enum LogLevel {
 const String _saveLogOpenKey = 'log_cache_open_key';
 const String _saveLogLevelKey = 'log_cache_level_key';
 const int _logMaxSize = 1024 * 1024 * 50;
-
 
 class LogFileManager {
   static late final SharedPreferences _prefs;
@@ -173,7 +170,6 @@ class LogFileManager {
   }
 }
 
-
 class Log {
   static Logger? _logger;
 
@@ -200,10 +196,6 @@ class Log {
     _logger?.d(message, error: error, stackTrace: stackTrace);
   }
 
-  static void v(dynamic message, [dynamic error, StackTrace? stackTrace]) {
-    _logger?.v(message, error: error, stackTrace: stackTrace);
-  }
-
   static void i(dynamic message, [dynamic error, StackTrace? stackTrace]) {
     _logger?.i(message, error: error, stackTrace: stackTrace);
   }
@@ -214,10 +206,6 @@ class Log {
 
   static void e(dynamic message, [dynamic error, StackTrace? stackTrace]) {
     _logger?.e(message, error: error, stackTrace: stackTrace);
-  }
-
-  static void wtf(dynamic message, [dynamic error, StackTrace? stackTrace]) {
-    _logger?.wtf(message, error: error, stackTrace: stackTrace);
   }
 
   static Future<void> enableFileLog(bool enable) async {
@@ -247,9 +235,8 @@ class Log {
         printer: SimplePrinter(printTime: true, colors: false),
         output: MultiOutput([
           ConsoleOutput(),
-          if (file != null) FileOutput(file: file),
+          FileOutput(file: file),
         ]),
-
         filter: ProductionFilter(),
       );
     }

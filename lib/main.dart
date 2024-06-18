@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return _screenUtilInit(
       child: GetMaterialApp(
         title: 'FlutterDevs',
@@ -30,6 +29,7 @@ class MyApp extends StatelessWidget {
         initialRoute: Routes.home,
         getPages: AppContext.to.routers,
         unknownRoute: _unknownRoute(),
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: _localizationsDelegates(),
         logWriterCallback: _logWriterCallback,
         onReady: _onReady,

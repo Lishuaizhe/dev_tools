@@ -64,7 +64,7 @@ class AppContext extends GetxService {
   final List<GetPage> routers = [];
 
   final _appReady = false.obs;
-  final _initReady = false.obs;
+  // final _initReady = false.obs;
 
   Future<AppContext> init() async {
     _initModuleList(); // 初始化模块

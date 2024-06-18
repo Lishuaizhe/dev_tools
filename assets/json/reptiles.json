@@ -1,0 +1,112 @@
+{
+  "Lizards": [
+    {
+      "name": "Bearded Dragon",
+      "commonName": "鬃狮蜥",
+      "description": "性情温和，适合初学者。"
+    },
+    {
+      "name": "Leopard Gecko",
+      "commonName": "豹纹守宫",
+      "description": "容易饲养，不需要特殊照明。"
+    },
+    {
+      "name": "Green Iguana",
+      "commonName": "绿鬣蜥",
+      "description": "需要较大的饲养空间和特殊的环境条件。"
+    },
+    {
+      "name": "Chameleon",
+      "commonName": "变色龙",
+      "description": "需要细心照顾和特定的环境。"
+    }
+  ],
+  "Snakes": [
+    {
+      "name": "Corn Snake",
+      "commonName": "玉米蛇",
+      "description": "性情温顺，适合初学者。"
+    },
+    {
+      "name": "Ball Python",
+      "commonName": "球蟒",
+      "description": "温和且易于饲养。"
+    },
+    {
+      "name": "Milk Snake",
+      "commonName": "奶蛇",
+      "description": "颜色鲜艳，但需要一定的饲养经验。"
+    },
+    {
+      "name": "Kingsnake",
+      "commonName": "松果蛇",
+      "description": "易于照顾，不挑食。"
+    }
+  ],
+  "Turtles": [
+    {
+      "name": "Red-Eared Slider",
+      "commonName": "红耳龟",
+      "description": "常见且容易饲养。"
+    },
+    {
+      "name": "Sulcata Tortoise",
+      "commonName": "苏卡达陆龟",
+      "description": "需要较大的活动空间。"
+    },
+    {
+      "name": "Leopard Tortoise",
+      "commonName": "豹纹龟",
+      "description": "较为温顺，适合家庭饲养。"
+    },
+    {
+      "name": "Yellow-Margined Box Turtle",
+      "commonName": "黄缘龟",
+      "description": "适合初学者，但需要特定的环境。"
+    }
+  ],
+  "Frogs": [
+    {
+      "name": "African Bullfrog",
+      "commonName": "非洲牛蛙",
+      "description": "体型大且食量大。"
+    },
+    {
+      "name": "Tomato Frog",
+      "commonName": "番茄蛙",
+      "description": "颜色鲜艳，容易饲养。"
+    },
+    {
+      "name": "Poison Dart Frog",
+      "commonName": "箭毒蛙",
+      "description": "颜色艳丽，但需小心处理。"
+    },
+    {
+      "name": "Tree Frog",
+      "commonName": "树蛙",
+      "description": "需要湿润的环境和垂直空间。"
+    }
+  ],
+  "Others": [
+    {
+      "name": "Leopard Tortoise",
+      "commonName": "豹龟",
+      "description": "需要较大的活动空间。"
+    },
+    {
+      "name": "Chinese Softshell Turtle",
+      "commonName": "中华鳖",
+      "description": "需要水环境。"
+    },
+    {
+      "name": "Jackson's Chameleon",
+      "commonName": "松果变色龙",
+      "description": "性格温顺，但需要特定的环境。"
+    },
+    {
+      "name": "Monitor Lizard",
+      "commonName": "大蜥蜴",
+      "description": "体型较大，需要专业的饲养条件。"
+    }
+  ]
+}
