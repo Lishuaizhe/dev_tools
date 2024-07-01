@@ -21,6 +21,7 @@ class KnowledgeHomeState {
   KnowledgeHomeState();
 
   var chartDate = {}.obs;
+  var data = [].obs;
 
   var date = {}.obs;
 

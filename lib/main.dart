@@ -1,3 +1,4 @@
+import 'package:bruno/bruno.dart';
 import 'package:dev_tools/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'app/main/pages/unknown_route/binding.dart';
 import 'app/main/pages/unknown_route/view.dart';
 import 'bootstrap/app.dart';
 import 'config/brn_localization_delegate.dart';
+import 'config/config_theme_utils.dart';
 import 'config/theme_data_app.dart';
 import 'utils/log.dart';
 
