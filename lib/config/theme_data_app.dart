@@ -5,10 +5,11 @@ class ThemeDateApp {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.green,
-      brightness: Brightness.light,
-    ),
+    // colorScheme: ColorScheme.fromSeed(
+      // seedColor: Colors.white,
+      // primary: Colors.orange,
+      // brightness: Brightness.light,
+    // ),
   );
 
   /// 暗色主题
@@ -17,6 +18,7 @@ class ThemeDateApp {
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.orange,
+      primary: Colors.orange,
       brightness: Brightness.dark,
     ),
   );

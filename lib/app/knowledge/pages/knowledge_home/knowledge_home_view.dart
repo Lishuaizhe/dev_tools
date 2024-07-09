@@ -1,3 +1,5 @@
+import 'package:dev_tools/router/app_router.dart';
+import 'package:dev_tools/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -18,29 +20,100 @@ class KnowledgeHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Obx(() => Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('KnowledgeHome'),
+      ),
+      body: SizedBox(
+        width: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(logic.state.stateDateTime.value),
-              _BTCValue(),
-              SizedBox(
-                width: double.infinity,
-                height: 250.h,
-                child: CustomPaint(
-                  painter:
-                      LineChartPainterNew(dateList: state.chartDate['prices']),
-                ),
-              ).paddingSymmetric(horizontal: 15.w, vertical: 20.w),
-              ElevatedButton(
-                onPressed: () {
-                  logic.initDate();
-                  logic.getChart();
+              _itemView(
+                onTap: () {
+                  Get.toNamed(Routes.sliverDemoPage);
                 },
-                child: const Text('请求新的数据', maxLines: 10),
+                text: 'SliverDemoPage',
               ),
-              Text('${state.chartDate['prices'][0]}'),
+              _itemView(
+                onTap: () {
+                  Get.toNamed(Routes.knowledge2048);
+                },
+                text: '2048',
+              ),
+              _itemView(
+                onTap: () {
+                  Get.toNamed(Routes.meeting);
+                },
+                text: '加入会议',
+              ),
+              _itemView(
+                onTap: () {
+                  Get.toNamed(Routes.resourceMeeting);
+                },
+                text: '资源会议',
+              ),
+              // AlertDialog(
+              //   title: const Text('提示'),
+              //   content: const Text('这是一个弹窗'),
+              //   actions: [
+              //     TextButton(
+              //       onPressed: () {
+              //         Get.back();
+              //       },
+              //       child: const Text('确定'),
+              //     ),
+              //   ],
+              // ),
+              _itemView(
+                onTap: () {
+                  // Get.toNamed(Routes.boundedFrictionDemoPage);
+                },
+                text: 'BoundedFrictionDemoPage',
+              ),
             ],
-          )),
+          ),
+        ),
+      ),
+    );
+    // return SafeArea(
+    //   child: Obx(() => Column(
+    //         children: [
+    //           Text(logic.state.stateDateTime.value),
+    //           _BTCValue(),
+    //           SizedBox(
+    //             width: double.infinity,
+    //             height: 250.h,
+    //             child: CustomPaint(
+    //               painter:
+    //                   LineChartPainterNew(dateList: state.chartDate['prices']),
+    //             ),
+    //           ).paddingSymmetric(horizontal: 15.w, vertical: 20.w),
+    //           ElevatedButton(
+    //             onPressed: () {
+    //               logic.initDate();
+    //               logic.getChart();
+    //             },
+    //             child: const Text('请求新的数据', maxLines: 10),
+    //           ),
+    //           Text('${state.chartDate['prices'][0]}'),
+    //         ],
+    //       )),
+    // );
+  }
+
+  Widget _itemView({required GestureTapCallback? onTap, required String text}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        width: 100.w,
+        height: 100.w,
+        child: Card(
+          color: Colors.white,
+          child: Center(child: Text(text)),
+        ),
+      ),
     );
   }
 
