@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -23,30 +22,11 @@ class KnowledgeHomeLogic extends GetxController {
   void onInit() {
     super.onInit();
     networkService();
-    // initDate();
+    initDate();
     // 每分钟请求一次
     // _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
     // initDate();
     // });
-  }
-
-  void initGemini() async {
-// Access your API key as an environment variable (see "Set up your API key" above)
-//   final apiKey = Platform.environment['API_KEY'];
-//   if (apiKey == null) {
-//     print('No \$API_KEY environment variable');
-//     exit(1);
-//   }
-
-    final model = GenerativeModel(
-        model: 'gemini-1.5-flash',
-        apiKey: 'AIzaSyChuxU61sbVgu_Ef30o3-I4kXBxcADIwp8',
-        toolConfig: ToolConfig());
-    // final content = [Content.text('Write a story about a magic backpack.')];
-    final content = [Content.text('你好 中文状态')];
-    final response = await model.generateContent(content);
-    var s = response.text ?? '未知结果';
-    state.data.add(s);
   }
 
   @override
@@ -104,7 +84,7 @@ class KnowledgeHomeLogic extends GetxController {
   void getChart() async {
     await _dio
         .request(
-        'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1')
+            'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1')
         .then((value) {
       state.chartDate.value = value.data;
     });

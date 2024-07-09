@@ -11,13 +11,7 @@ class Routes {
   static const String informationAdd = '/information/add';
   static const String informationSearch = '/information/search';
 
-  /*==========================  knowledge  ====================================*/
-
-  static const String knowledge2048 = '/knowledge/game2048';
-  static const String meeting = '/knowledge/Meeting';
-  static const String resourceMeeting = '/knowledge/resourceMeeting';
-  static const String boundedFrictionDemoPage = '/knowledge/boundedFrictionDemoPage';
-  static const String sliverDemoPage = '/knowledge/SliverDemoPage';
+  /*==========================  TOOLS  ====================================*/
 
 /*==========================  MY  ====================================*/
 }

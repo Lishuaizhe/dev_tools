@@ -11,7 +11,4 @@ import 'package:dev_tools/framework/module/module.dart';
 class AboutModule extends Module {
    AboutModule({ int priority = 0})
       : super(name: "about", priority: priority);
-
-
-
 }
