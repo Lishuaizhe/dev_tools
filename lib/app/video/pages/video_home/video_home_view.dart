@@ -16,36 +16,18 @@ class VideoHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: const Color(0x00FFFFFF),
         flexibleSpace: Center(
           child: TabBar(
             controller: logic.pageController,
             isScrollable: false,
-            tabs: [
-              const Tab(text: "直播").marginOnly(bottom: 5.w),
-              const Tab(text: "视频").marginOnly(bottom: 5.w),
+            tabs: const [
+              Tab(text: "广告"),
+              Tab(text: "直播"),
+              Tab(text: "视频"),
             ],
-            dividerHeight: 0,
-            indicator: UnderlineTabIndicator(
-              borderSide:
-                  BorderSide(width: 2.w, color: const Color(0xFF2FA9FD)),
-              insets: EdgeInsets.only(left: 20.w, right: 20.w),
-              borderRadius: BorderRadius.circular(3.w),
-            ),
-            padding: EdgeInsets.only(top: 20.w),
-            indicatorWeight: 1.w,
-            indicatorColor: const Color(0xFF2FA9FD),
-            indicatorPadding: EdgeInsets.all(10.w),
-            indicatorSize: TabBarIndicatorSize.label,
-            physics: const BouncingScrollPhysics(),
-            labelColor: const Color(0xFF2FA9FD),
-            labelStyle: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400),
-            unselectedLabelColor: Colors.black,
-            unselectedLabelStyle:
-                TextStyle(fontSize: 15.sp, fontWeight: FontWeight.normal),
-          ).paddingSymmetric(horizontal: 100.w),
+          ),
         ),
       ),
       body: bodyView(),
@@ -56,6 +38,7 @@ class VideoHomePage extends StatelessWidget {
     return TabBarView(
       controller: logic.pageController,
       children: [
+        const AndroidView(viewType: 'native_fragment_view'),
         Center(
           child: BrnAbnormalStateWidget(
             topOffset: 300,
@@ -68,7 +51,6 @@ class VideoHomePage extends StatelessWidget {
             ),
           ),
         ),
-        // gestureDetectorTypeOne(),
         PageView(
           scrollDirection: Axis.vertical,
           children: [
@@ -79,7 +61,7 @@ class VideoHomePage extends StatelessWidget {
           ],
         )
       ],
-    ).marginOnly(top: state.statusBarHeight.value);
+    );
   }
 
   GestureDetector gestureDetectorTypeOne() {
@@ -100,7 +82,7 @@ class VideoHomePage extends StatelessWidget {
     );
   }
 
-  gestureDetectorTypeTow() {
+  Widget gestureDetectorTypeTow() {
     return CustomGestureDetector(
       onLeftSwipe: () {
         Get.toNamed(Routes.videoPlayerScreenPage);

@@ -55,6 +55,7 @@ dependencies:
   google_generative_ai: ^0.4.3
   video_player: ^2.3.0
   curved_navigation_bar: ^1.0.6
+  easy_refresh: ^3.4.0
 
 # dependency_overrides:
 #  meta: ^1.14.0
@@ -87,6 +88,11 @@ flutter:
     - assets/json/reptiles.json
     - assets/images/main/
     - assets/images/knowledge/
+
+  fonts:
+    - family: enIcon
+      fonts:
+        - asset: assets/fonts/icon/iconfont.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,6 +1,7 @@
 import 'package:bruno/bruno.dart';
 import 'package:dev_tools/app/about/pages/about_home/about_home_view.dart';
 import 'package:dev_tools/app/information/pages/information_home/information_home_view.dart';
+import 'package:dev_tools/ui/icons/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: _bodyWidget(),
       bottomNavigationBar: _bottomNavigationBar(),
     );
@@ -28,6 +30,8 @@ class HomePage extends StatelessWidget {
       top: false,
       bottom: true,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: PageView(
@@ -44,6 +48,27 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Row idText(double h) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          DNUIconFont.zan,
+          size: h,
+          color: const Color(0xFF9097A5),
+        ),
+        SizedBox(
+          width: h,
+          height: h,
+          child: Image.asset(
+            'assets/images/main/good_one.png',
+            fit: BoxFit.fill,
+          ),
+        ),
+      ],
     );
   }
 

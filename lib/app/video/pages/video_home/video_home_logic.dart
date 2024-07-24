@@ -13,8 +13,7 @@ class VideoHomeLogic extends GetxController
   @override
   void onInit() {
     super.onInit();
-    pageController = TabController(initialIndex: 0, length: 2, vsync: this);
-
+    pageController = TabController(initialIndex: 0, length: 3, vsync: this);
 
     try {
       state.statusBarHeight.value = MediaQuery.of(Get.context!).padding.top;

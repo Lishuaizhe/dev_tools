@@ -9,4 +9,6 @@ class InformationHomeState {
   }
 
   var dashboardState = false.obs;
+
+  var pageIndex = 0.obs;
 }
