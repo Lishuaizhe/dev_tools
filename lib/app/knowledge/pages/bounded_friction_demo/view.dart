@@ -11,7 +11,7 @@ class BoundedFrictionDemo extends StatefulWidget {
 class _BoundedFrictionDemoState extends State<BoundedFrictionDemo>
     with SingleTickerProviderStateMixin {
   AnimationController? _controller;
-  Animation<double>? _animation;
+  // Animation<double>? _animation;
   double _dragPosition = 0.0;
   double _dragVelocity = 0.0;
 
@@ -54,7 +54,7 @@ class _BoundedFrictionDemoState extends State<BoundedFrictionDemo>
         onHorizontalDragEnd: (details) {
           _runFrictionSimulation(_dragVelocity);
         },
-        onVerticalDragDown: (e){
+        onVerticalDragDown: (e) {
           print('onVerticalDragDown$e');
         },
         child: Center(

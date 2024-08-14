@@ -14,7 +14,7 @@ import 'utils/log.dart';
 
 void main() {
   runAppLocation(() {
-    runApp(const MyApp());
+    runApp(const MyApp()); 
   });
 }
 

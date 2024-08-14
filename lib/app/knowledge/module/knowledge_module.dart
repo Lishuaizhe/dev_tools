@@ -7,7 +7,6 @@ import 'package:dev_tools/framework/module/module.dart';
 import 'package:dev_tools/router/routes.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
-import '../pages/bounded_friction_demo/binding.dart';
 import '../pages/bounded_friction_demo/view.dart';
 import '../pages/game2048/binding.dart';
 import '../pages/game2048/view.dart';
