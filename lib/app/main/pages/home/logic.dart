@@ -2,7 +2,9 @@ import 'package:bruno/bruno.dart';
 import 'package:dev_tools/app/about/pages/about_home/about_home_logic.dart';
 import 'package:dev_tools/app/information/pages/information_home/information_home_logic.dart';
 import 'package:dev_tools/app/knowledge/pages/knowledge_home/knowledge_home_logic.dart';
+import 'package:dev_tools/app/video/pages/video_home/video_home_logic.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'state.dart';
@@ -16,7 +18,6 @@ class HomeLogic extends FullLifeCycleController with FullLifeCycleMixin {
   void onInit() {
     super.onInit();
     initLogic();
-    initBrnBottomTabBarItemList();
     pageController.addListener(() {
       state.tagIndex.value = pageController.page!.toInt();
     });
@@ -49,12 +50,6 @@ class HomeLogic extends FullLifeCycleController with FullLifeCycleMixin {
   void initBrnBottomTabBarItemList() {
     state.tabItems.add(
       const BrnBottomTabBarItem(
-        icon: Icon(Icons.home_rounded),
-        title: Text("Home"),
-      ),
-    );
-    state.tabItems.add(
-      const BrnBottomTabBarItem(
         icon: Icon(Icons.explore_rounded),
         title: Text("Explore"),
       ),
@@ -67,6 +62,7 @@ class HomeLogic extends FullLifeCycleController with FullLifeCycleMixin {
     );
   }
 
+
   void onBottomTabBarTap(int value) {
     state.tagIndex.value = value;
     pageController.jumpToPage(value);
@@ -78,19 +74,15 @@ class HomeLogic extends FullLifeCycleController with FullLifeCycleMixin {
 
   void initLogic() {
     Get.lazyPut(() => InformationHomeLogic());
+    Get.lazyPut(() => VideoHomeLogic());
     Get.lazyPut(() => KnowledgeHomeLogic());
     Get.lazyPut(() => AboutHomeLogic());
   }
 
   void deleteLogic() {
     Get.delete<InformationHomeLogic>();
+    Get.delete<VideoHomeLogic>();
     Get.delete<KnowledgeHomeLogic>();
     Get.delete<AboutHomeLogic>();
   }
 }
-
-
-// title: Text(
-        //   "首页",
-        //   style: TextStyle(fontSize: 14.sp),
-        // ),

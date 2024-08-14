@@ -18,6 +18,8 @@ class Routes {
   static const String resourceMeeting = '/knowledge/resourceMeeting';
   static const String boundedFrictionDemoPage = '/knowledge/boundedFrictionDemoPage';
   static const String sliverDemoPage = '/knowledge/SliverDemoPage';
+  static const String videoPlayerScreenPage = '/knowledge/VideoPlayerScreenPage';
+  static const String tabPageViewPage = '/knowledge/TabPageViewPage';
 
 /*==========================  MY  ====================================*/
 }

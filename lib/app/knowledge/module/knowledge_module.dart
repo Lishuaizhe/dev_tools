@@ -1,4 +1,6 @@
 import 'package:dev_tools/app/knowledge/pages/meeting/meeting_view.dart';
+import 'package:dev_tools/app/knowledge/pages/tab_page_view/tab_page_view_binding.dart';
+import 'package:dev_tools/app/knowledge/pages/video_player_screen/video_player_screen_binding.dart';
 import 'package:dev_tools/config/module_priority.dart';
 import 'package:dev_tools/framework/module/build/annotations.dart';
 import 'package:dev_tools/framework/module/module.dart';
@@ -12,6 +14,8 @@ import '../pages/game2048/view.dart';
 import '../pages/resource_meeting/resource_meeting_view.dart';
 import '../pages/sliver_demo/sliver_demo_binding.dart';
 import '../pages/sliver_demo/sliver_demo_view.dart';
+import '../pages/tab_page_view/tab_page_view_view.dart';
+import '../pages/video_player_screen/video_player_screen_view.dart';
 
 /// FileName: knowledge_module.dart
 ///
@@ -47,6 +51,16 @@ class KnowledgeModule extends Module {
         name: Routes.sliverDemoPage,
         page: () => SliverDemoPage(),
         binding: SliverDemoBinding(),
+      ),
+      GetPage(
+        name: Routes.videoPlayerScreenPage,
+        page: () => VideoPlayerScreenPage(),
+        binding: VideoPlayerScreenBinding(),
+      ),
+      GetPage(
+        name: Routes.tabPageViewPage,
+        page: () => TabPageViewPage(),
+        binding: TabPageViewBinding(),
       ),
     ];
   }

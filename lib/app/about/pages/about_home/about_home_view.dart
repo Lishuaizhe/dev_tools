@@ -24,16 +24,26 @@ class AboutHomePage extends StatelessWidget {
       children: [
         Stack(
           children: [
-            // AnimatedContainer(
-            //   duration: const Duration(microseconds: 1),
-            //   child: Image.network(
-            //     'https://picsum.photos/150',
-            //     width: double.infinity,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
+            AnimatedContainer(
+              height: 301.w,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFFF5F2F7), // 开始颜色
+                    Color(0xFFD8E2F5), // 中间颜色
+                    Color(0xFFE2FEF3), // 结束颜色
+                  ],
+                  stops: [0.0, 0.5, 1.0], // 颜色停靠点，与中心颜色对应
+                ),
+                // 这里设置所有角的半径为0
+                borderRadius: BorderRadius.zero,
+              ),
+              duration: const Duration(microseconds: 1),
+            ),
             Positioned(
-              top: 55.w,
+              top: 44.w,
               right: 0,
               child: Row(
                 children: [

@@ -10,11 +10,13 @@
 import 'package:dev_tools/app/about/module/about_module.dart';
 import 'package:dev_tools/app/information/module/information_module.dart';
 import 'package:dev_tools/app/knowledge/module/knowledge_module.dart';
+import 'package:dev_tools/app/video/module/video_module.dart';
 import 'package:dev_tools/framework/module/module.dart';
 import 'package:dev_tools/app/main/module/main_module.dart';
 
 final List<Module> $appModuleList = [
   MainModule(priority: 10000),
+  VideoModule(priority: 10000),
   InformationModule(priority: 10000),
   KnowledgeModule(priority: 10000),
   AboutModule(priority: 10000),
