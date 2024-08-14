@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bruno/bruno.dart';
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,6 +25,7 @@ void runAppLocation(VoidCallback runApp) {
     initBruno();
     systemUi();
     initGetX();
+    initEasyRefresh();
     _initService();
     runApp.call();
   }, (error, stack) {
@@ -31,6 +33,17 @@ void runAppLocation(VoidCallback runApp) {
       print("runMyApp error:$error, $stack");
     }
   });
+}
+
+void initEasyRefresh() {
+  // EasyRefresh.defaultHeaderBuilder = () => ClassicalHeader(
+  //       enableInfiniteRefresh: false,
+  //       enableHapticFeedback: false,
+  //       enableInfiniteLoad: false,
+  //       float: false,
+  //       enableControlFinishRefresh: false,
+  //       completeDuration: const Duration(milliseconds: 500),
+  //     );
 }
 
 void initGetX() {
@@ -55,12 +68,20 @@ void systemUi() {
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarDividerColor: Colors.blue,
-      systemNavigationBarColor: Colors.white,
+      systemNavigationBarDividerColor: Colors.black,
+      systemNavigationBarColor: Colors.black,
       systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: false,
     );
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
+  /*statusBarColor: 设置状态栏的背景颜色。
+statusBarBrightness: 设置状态栏图标和文字的亮度（适用于iOS）。
+statusBarIconBrightness: 设置状态栏图标和文字的亮度（适用于Android）。
+systemNavigationBarColor: 设置系统导航栏的背景颜色。
+systemNavigationBarDividerColor: 设置系统导航栏分隔线的颜色。
+systemNavigationBarIconBrightness: 设置系统导航栏图标的亮度。*/
 }
 
 Future<void> _initService() async {

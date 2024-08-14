@@ -1,10 +1,8 @@
-import 'package:dev_tools/router/app_router.dart';
-import 'package:dev_tools/router/routes.dart';
+import 'package:bruno/bruno.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../config/hero_comment_value.dart';
 import 'information_home_logic.dart';
 import 'information_home_state.dart';
 
@@ -19,50 +17,111 @@ class InformationHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: _appBar(),
-        body: SingleChildScrollView(
-            child: Column(children: [
-          _widgetItem(widget: _textWidgetItem()),
-          _widgetItem(widget: _imageWidgetItem()),
-          _widgetItem(
-              widget:
-                  Column(children: [_textWidgetItem(), _imageWidgetItem()])),
-        ])),
-        floatingActionButton: _floatingActionButton());
-  }
-
-  GestureDetector _floatingActionButton() {
-    return GestureDetector(
-      onTap: () {
-        AppRouter.push(Routes.informationAdd);
-      },
-      child: Hero(
-        tag: HeroTags.informationToSelectImage,
-        child: Container(
-          width: 60.w,
-          height: 60.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(35.w),
-            color: Colors.green[500],
-          ),
-          child: Icon(Icons.add_rounded, color: Colors.white, size: 30.sp),
-        ).marginOnly(bottom: 20.w),
+        body: TabBarView(
+          controller: logic.pageController,
+          children: [
+            _widgetItem(widget: _textWidgetItem()),
+            _widgetItem(widget: _imageWidgetItem()),
+            _widgetItem(
+              widget: Column(
+                children: [
+                  _textWidgetItem(),
+                  _imageWidgetItem(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      actions: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none_rounded)),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.search_rounded)),
-      ],
+  BrnAppBar _appBar() {
+    return BrnAppBar(
+      //自定义title
+      title: Container(
+        height: 44,
+        padding: const EdgeInsets.only(left: 24, right: 12),
+        child: ListView.separated(
+          itemCount: 3,
+          //横滑
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                // setState(() {
+                //   this.currentIndex = index;
+                // });
+              },
+              child: Center(
+                child: Text(
+                  index == 2 ? '标题' : '标题多文字',
+                  // style: index == currentIndex
+                  //     ? selectedHeiStyle
+                  //     : unSelectedHeiStyle,
+                ),
+              ),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(width: 24);
+          },
+        ),
+      ),
     );
+    // return AppBar(
+    //   backgroundColor: Colors.white,
+    //   leading: IconButton(
+    //     padding: EdgeInsets.zero,
+    //     icon: const Icon(Icons.search_rounded),
+    //     onPressed: () {},
+    //   ),
+    //   flexibleSpace: TabBar(
+    //     controller: logic.pageController,
+    //     tabs: [
+    //       Container(
+    //         alignment: Alignment.topCenter,
+    //         child:  Tab(text: 'exafarads'),
+    //       ),
+    //       Container(
+    //         alignment: Alignment.bottomCenter,
+    //         child: Tab(text: 'afadsfafads'),
+    //       ),
+    //       Container(
+    //         alignment: Alignment.bottomCenter,
+    //         child: Tab(text: 'afadsfafads'),
+    //       ),
+    //     ],
+    //     isScrollable: true,
+    //     indicator: EnUnderlineTabIndicator(
+    //       borderSide: BorderSide(width: 5.w, color: Colors.black),
+    //       borderRadius: BorderRadius.circular(4.w),
+    //       insets: EdgeInsets.only(bottom: 2.w),
+    //     ),
+    //     labelStyle: TextStyle(
+    //       color: Colors.black,
+    //       fontSize: 18.sp,
+    //       fontWeight: FontWeight.w600,
+    //     ),
+    //     unselectedLabelStyle: TextStyle(
+    //       color: Colors.black,
+    //       fontSize: 14.sp,
+    //       fontWeight: FontWeight.w400,
+    //     ),
+    //     dividerColor: Colors.transparent,
+    //     tabAlignment: TabAlignment.start,
+    //   ).marginSymmetric(horizontal: 40.w),
+    // );
   }
 
+  // IconButton(
+  //     onPressed: () {},
+  //     icon: const Icon(Icons.notifications_none_rounded)),
+  // IconButton(onPressed: () {}, icon: const Icon(Icons.search_rounded)),
   // msg
   Widget _textWidgetItem() {
     return Text(
@@ -161,6 +220,55 @@ class InformationHomePage extends StatelessWidget {
       ],
     );
   }
+
+// Widget _appBar() {
+//   return Row(
+//     crossAxisAlignment: CrossAxisAlignment.end,
+//     mainAxisAlignment: MainAxisAlignment.center,
+//     children: [
+//       _itemView(title: '广场', select: 0),
+//       _itemView(title: '关注', select: 1).marginSymmetric(horizontal: 20.w),
+//       _itemView(title: 'V友圈', select: 2),
+//     ],
+//   ).marginSymmetric(horizontal: 50.w);
+// }
+//
+// Widget _itemView({
+//   required String title,
+//   required int select,
+// }) {
+//   return Obx(() {
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.end,
+//       children: [
+//         Text(
+//           title,
+//           style: state.pageIndex.value == select
+//               ? TextStyle(
+//                   color: Colors.black,
+//                   fontWeight: FontWeight.w600,
+//                   fontSize: 18.sp,
+//                 )
+//               : TextStyle(
+//                   color: const Color(0xFF4F5563),
+//                   fontWeight: FontWeight.w400,
+//                   fontSize: 15.sp,
+//                 ),
+//         ),
+//         Visibility(
+//           visible: state.pageIndex.value == select,
+//           child: Container(
+//             width: 20.w,
+//             height: 4.w,
+//             decoration: BoxDecoration(
+//                 color: Colors.black,
+//                 borderRadius: BorderRadius.all(Radius.circular(2.w))),
+//           ).marginOnly(top: 4.w),
+//         ),
+//       ],
+//     );
+//   });
+// }
 }
 
 // IconButton(

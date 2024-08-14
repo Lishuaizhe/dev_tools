@@ -1,7 +1,9 @@
 import 'package:bruno/bruno.dart';
+import 'package:dev_tools/app/video/pages/video_home/draggable_progress_bar';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../../../router/routes.dart';
 import '../../../knowledge/convertor/custom_gesture_detector.dart';
@@ -13,39 +15,32 @@ class VideoHomePage extends StatelessWidget {
   final logic = Get.find<VideoHomeLogic>();
   final state = Get.find<VideoHomeLogic>().state;
 
+  var _currentValue = 50.0.obs;
+
+  late BuildContext _context;
+
+  var _isDragging = false.obs;
+
+  void _onProgressChanged(double progress) {
+    _isDragging.value = progress != 0.0 && progress != 1.0;
+  }
+
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: const Color(0x00FFFFFF),
         flexibleSpace: Center(
           child: TabBar(
             controller: logic.pageController,
             isScrollable: false,
-            tabs: [
-              const Tab(text: "直播").marginOnly(bottom: 5.w),
-              const Tab(text: "视频").marginOnly(bottom: 5.w),
+            tabs: const [
+              Tab(text: "广告"),
+              Tab(text: "直播"),
+              Tab(text: "视频"),
             ],
-            dividerHeight: 0,
-            indicator: UnderlineTabIndicator(
-              borderSide:
-                  BorderSide(width: 2.w, color: const Color(0xFF2FA9FD)),
-              insets: EdgeInsets.only(left: 20.w, right: 20.w),
-              borderRadius: BorderRadius.circular(3.w),
-            ),
-            padding: EdgeInsets.only(top: 20.w),
-            indicatorWeight: 1.w,
-            indicatorColor: const Color(0xFF2FA9FD),
-            indicatorPadding: EdgeInsets.all(10.w),
-            indicatorSize: TabBarIndicatorSize.label,
-            physics: const BouncingScrollPhysics(),
-            labelColor: const Color(0xFF2FA9FD),
-            labelStyle: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400),
-            unselectedLabelColor: Colors.black,
-            unselectedLabelStyle:
-                TextStyle(fontSize: 15.sp, fontWeight: FontWeight.normal),
-          ).paddingSymmetric(horizontal: 100.w),
+          ),
         ),
       ),
       body: bodyView(),
@@ -56,6 +51,7 @@ class VideoHomePage extends StatelessWidget {
     return TabBarView(
       controller: logic.pageController,
       children: [
+        const AndroidView(viewType: 'native_fragment_view'),
         Center(
           child: BrnAbnormalStateWidget(
             topOffset: 300,
@@ -68,18 +64,9 @@ class VideoHomePage extends StatelessWidget {
             ),
           ),
         ),
-        // gestureDetectorTypeOne(),
-        PageView(
-          scrollDirection: Axis.vertical,
-          children: [
-            gestureDetectorTypeTow(),
-            gestureDetectorTypeTow(),
-            gestureDetectorTypeTow(),
-            gestureDetectorTypeTow(),
-          ],
-        )
+        gestureDetectorTypeTow(),
       ],
-    ).marginOnly(top: state.statusBarHeight.value);
+    );
   }
 
   GestureDetector gestureDetectorTypeOne() {
@@ -92,24 +79,160 @@ class VideoHomePage extends StatelessWidget {
           logic.pageController.animateTo(0);
         }
       },
-      child: Container(
-        child: const Center(
-          child: Text('Another data'),
+      child: const Center(
+        child: Text('Another data'),
+      ),
+    );
+  }
+
+  Widget gestureDetectorTypeTow() {
+    return SafeArea(
+      top: true,
+      child: Stack(
+        children: [
+          _voidPlay(),
+          _play_pase_view(),
+          Obx(_slider),
+        ],
+      ),
+    );
+  }
+
+  CustomGestureDetector _play_pase_view() {
+    return CustomGestureDetector(
+      onLeftSwipe: () {
+        // Get.toNamed(Routes.videoPlayerScreenPage);
+        BrnToast.show('onLeftSwipe', _context);
+      },
+      child: GestureDetector(
+        onTap: () {
+          BrnToast.show('11111', _context);
+        },
+        child: Image.asset(
+          'assets/images/knowledge/home_page_login.png',
+          width: double.infinity,
+          height: double.infinity,
         ),
       ),
     );
   }
 
-  gestureDetectorTypeTow() {
-    return CustomGestureDetector(
-      onLeftSwipe: () {
-        Get.toNamed(Routes.videoPlayerScreenPage);
-      },
+  Widget _voidPlay() {
+    return Center(
+      child: VideoPlayer(
+        logic.videoPlayerController,
+      ),
+    );
+  }
+
+  Widget _slider() => Positioned(
+        bottom: 20,
+        right: 0,
+        left: 0,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Current Value: ${state.progress.value}',
+              style: TextStyle(fontSize: 20.sp),
+            ),
+            Obx(
+              () => DraggableProgressBar(
+                width: 400,
+                height: 20,
+                value: state.progress.value,
+                onChanged: (value) {
+                  state.progress.value = value;
+                },
+              ),
+            ),
+            // SizedBox(
+            //   height: 100,
+            //   width: 400,
+            //   child: Slider(
+            //     value: _currentValue.value,
+            //     min: 0,
+            //     max: 100,
+            //     divisions: 100,
+            //     label: _currentValue.round().toString(),
+            //     onChanged: (double value) {
+            //       _currentValue.value = value;
+            //     },
+            //   ),
+            // ),
+          ],
+        ),
+      );
+}
+
+/* CustomGestureDetector(
+        onLeftSwipe: () {
+          Get.toNamed(Routes.videoPlayerScreenPage);
+        }, */
+
+class ProgressBar extends StatefulWidget {
+  final Function(double) onProgressChanged;
+
+  ProgressBar({required this.onProgressChanged});
+
+  @override
+  _ProgressBarState createState() => _ProgressBarState();
+}
+
+class _ProgressBarState extends State<ProgressBar> {
+  double _progress = 0.0;
+
+  void _onHorizontalDragUpdate(DragUpdateDetails details) {
+    setState(() {
+      _progress += details.primaryDelta! / MediaQuery.of(context).size.width;
+      _progress = _progress.clamp(0.0, 1.0);
+    });
+    widget.onProgressChanged(_progress);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onHorizontalDragUpdate: _onHorizontalDragUpdate,
       child: Container(
-        color: Colors.transparent,
-        height: double.infinity,
+        height: 50,
+        color: Colors.blue,
+        child: Stack(
+          children: [
+            Positioned(
+              left: 0,
+              right: MediaQuery.of(context).size.width * (1.0 - _progress),
+              child: Container(color: Colors.red),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class VideoPlayerWidget extends StatelessWidget {
+  final bool isDragging;
+
+  VideoPlayerWidget({required this.isDragging});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onHorizontalDragUpdate: isDragging
+          ? null // 如果正在拖动进度条，则不处理视频的滑动事件
+          : (details) {
+              // 处理视频的水平拖动事件
+              print("Video player horizontal drag update");
+            },
+      child: Container(
+        color: Colors.green,
         child: const Center(
-          child: Text('向下滑动更多'),
+          child: Text(
+            'Video Player',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 
@@ -7,8 +6,8 @@ class CustomGestureDetector extends StatefulWidget {
   final Widget child;
   final VoidCallback onLeftSwipe; // 回调函数
 
-
-  const CustomGestureDetector({super.key, required this.child, required this.onLeftSwipe});
+  const CustomGestureDetector(
+      {super.key, required this.child, required this.onLeftSwipe});
 
   @override
   State<CustomGestureDetector> createState() => _CustomGestureDetectorState();
@@ -20,10 +19,11 @@ class _CustomGestureDetectorState extends State<CustomGestureDetector> {
     return RawGestureDetector(
       gestures: {
         CustomHorizontalDragGestureRecognizer:
-        GestureRecognizerFactoryWithHandlers<
-            CustomHorizontalDragGestureRecognizer>(
-              () => CustomHorizontalDragGestureRecognizer(onLeftSwipe: widget.onLeftSwipe),
-              (CustomHorizontalDragGestureRecognizer instance) {
+            GestureRecognizerFactoryWithHandlers<
+                CustomHorizontalDragGestureRecognizer>(
+          () => CustomHorizontalDragGestureRecognizer(
+              onLeftSwipe: widget.onLeftSwipe),
+          (CustomHorizontalDragGestureRecognizer instance) {
             instance.onStart = instance.onStartDrag;
             instance.onUpdate = instance.onUpdateDrag;
             instance.onEnd = instance.onEndDrag;

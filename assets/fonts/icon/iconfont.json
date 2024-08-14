@@ -1,0 +1,16 @@
+{
+  "id": "4619239",
+  "name": "TIANS",
+  "font_family": "iconfont",
+  "css_prefix_text": "tians-",
+  "description": "V-mChat",
+  "glyphs": [
+    {
+      "icon_id": "41090930",
+      "name": "zan",
+      "font_class": "zan",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}

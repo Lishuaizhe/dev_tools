@@ -6,4 +6,6 @@ class VideoHomeState {
   }
 
   var statusBarHeight = 20.0.obs;
+
+  var progress = 0.0.obs;
 }

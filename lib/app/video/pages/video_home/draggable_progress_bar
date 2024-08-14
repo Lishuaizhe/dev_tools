@@ -1,0 +1,93 @@
+import 'package:flutter/material.dart';
+
+
+class DraggableProgressBar extends StatefulWidget {
+  final double width;
+  final double height;
+  final double value;
+  final ValueChanged<double> onChanged;
+
+  DraggableProgressBar({
+    required this.width,
+    required this.height,
+    required this.value,
+    required this.onChanged,
+  });
+
+  @override
+  _DraggableProgressBarState createState() => _DraggableProgressBarState();
+}
+
+class _DraggableProgressBarState extends State<DraggableProgressBar> {
+  late double _value;
+
+  @override
+  void initState() {
+    super.initState();
+    _value = widget.value;
+  }
+
+  void _handleDragUpdate(DragUpdateDetails details) {
+    setState(() {
+      _value += details.primaryDelta! / widget.width;
+      if (_value < 0) _value = 0;
+      if (_value > 1) _value = 1;
+      widget.onChanged(_value);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onHorizontalDragUpdate: _handleDragUpdate,
+      child: CustomPaint(
+        painter: ProgressBarPainter(_value),
+        size: Size(widget.width, widget.height),
+      ),
+    );
+  }
+}
+
+class ProgressBarPainter extends CustomPainter {
+  final double value;
+  ProgressBarPainter(this.value);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint backgroundPaint = Paint()
+      ..color = Colors.grey
+      ..style = PaintingStyle.fill;
+
+    final Paint progressPaint = Paint()
+      ..color = Colors.blue
+      ..style = PaintingStyle.fill;
+
+    final Paint thumbPaint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 2.0
+      ..strokeCap = StrokeCap.round;
+
+    // Draw background
+    canvas.drawRect(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      backgroundPaint,
+    );
+
+    // Draw progress
+    canvas.drawRect(
+      Rect.fromLTWH(0, 0, size.width * value, size.height),
+      progressPaint,
+    );
+
+    // Draw thumb
+    final thumbRadius = size.height / 2;
+    final thumbCenter = Offset(size.width * value, size.height / 2);
+    canvas.drawCircle(thumbCenter, thumbRadius, thumbPaint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
+  }
+}

@@ -16,102 +16,130 @@ class AboutHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(top: false, child: bodyWeight());
-  }
-
-  Widget bodyWeight() {
-    return Stack(
-      children: [
-        Stack(
-          children: [
-            AnimatedContainer(
-              height: 301.w,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFF5F2F7), // 开始颜色
-                    Color(0xFFD8E2F5), // 中间颜色
-                    Color(0xFFE2FEF3), // 结束颜色
-                  ],
-                  stops: [0.0, 0.5, 1.0], // 颜色停靠点，与中心颜色对应
-                ),
-                // 这里设置所有角的半径为0
-                borderRadius: BorderRadius.zero,
-              ),
-              duration: const Duration(microseconds: 1),
-            ),
-            Positioned(
-              top: 44.w,
-              right: 0,
-              child: Row(
+    return SafeArea(
+      top: false,
+      child: Stack(
+        children: [
+          // NestedScrollView(
+          //   controller: logic.scrollController,
+          //   headerSliverBuilder: (c, i) {
+          //     return [
+          //       SliverAppBar(
+          //         collapsedHeight: 45,
+          //         toolbarHeight: 0,
+          //         titleSpacing: 0,
+          //         leadingWidth: 0,
+          //         elevation: 0,
+          //         pinned: true,
+          //         floating: true,
+          //         leading: Container(),
+          //         backgroundColor: Colors.yellowAccent,
+          //         expandedHeight: 500,
+          //         title: Text('data'),
+          //       ),
+          //     ];
+          //   },
+            // body: TabBarView(
+            //   controller: logic.tabController,
+            //   children: [
+            //     Text('data'),
+            //     Text('data'),
+            //   ],
+            // ),
+          // ),
+        ],
+      ),
+    );
+    return Container(
+      color: Colors.greenAccent,
+      child: SafeArea(
+        child: SingleChildScrollView(
+          controller: logic.scrollController,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
                       onPressed: () {},
                       icon: Icon(
                         Icons.search,
                         color: Colors.white,
-                        size: 30.sp,
+                        size: 28.sp,
                       )),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(
-                      Icons.more_vert_outlined,
+                      Icons.more_horiz_outlined,
                       color: Colors.white,
-                      size: 30.sp,
+                      size: 28.sp,
                     ),
-                  ).marginOnly(right: 5.w),
+                  ),
                 ],
               ),
-            ),
-          ],
-        ),
-        SingleChildScrollView(
-          controller: logic.scrollController,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [heardAbout(), SizedBox(height: 2000.w)],
+              heardAbout(),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 
   Widget heardAbout() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _imageWithEdit(),
-        _nameAndIDAndMsg(),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _imageWithEdit(),
+            _nameAndIDAndMsg(),
+          ],
+        ),
         _followingAndFollower(),
+        _gridViewUser(),
+        _pointsCommunity(),
       ],
-    ).paddingOnly(left: 20.w, right: 20.w, top: 120.h, bottom: 20.h);
+    );
   }
 
   Widget _followingAndFollower() {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('310',
-                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold))
-            .marginOnly(right: 5.w),
-        Text('Following',
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.bold,
+            )).marginOnly(right: 5.w),
+        Text('关注',
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
             )),
+        Container(
+          color: Colors.white,
+          height: 9.w,
+          width: 1.w,
+          margin: EdgeInsets.symmetric(horizontal: 5.w),
+        ),
         Text('10',
-                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold))
-            .marginOnly(left: 20.w, right: 5.w),
-        Text('Followers',
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.bold,
+            )).marginOnly(right: 5.w),
+        Text('粉丝',
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
             )),
+        const Spacer(),
+        const Icon(Icons.edit_note)
       ],
     ).marginOnly(top: 5.w);
   }
@@ -125,7 +153,7 @@ class AboutHomePage extends StatelessWidget {
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
             )).marginOnly(bottom: 5.w),
-        Text('@zacharyli',
+        Text('@zachary_li',
             style: TextStyle(
               fontSize: 14.sp,
               color: Colors.grey,
@@ -148,17 +176,74 @@ class AboutHomePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(50.w), // 设置圆角半径
           child: Image.network(
             'https://picsum.photos/100',
-            width: 70.w, // 设置图片宽度
-            height: 70.w, // 设置图片高度
+            width: 80.w, // 设置图片宽度
+            height: 80.w, // 设置图片高度
             fit: BoxFit.cover, // 设置图片填充方式
           ),
         ).marginOnly(bottom: 10.h),
-        SizedBox(
-                height: 30,
-                child: OutlinedButton(
-                    onPressed: () {}, child: const Text('Edit Profile')))
-            .marginOnly(bottom: 10)
+      ],
+    );
+  }
+
+  _gridViewUser() {
+    return SizedBox(
+      height: 80.w,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (c, i) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 40.w,
+                height: 40.w,
+                child: const Placeholder(),
+              ),
+              const Text('data'),
+            ],
+          );
+        },
+        itemCount: 10,
+      ),
+    );
+  }
+
+  _pointsCommunity() {
+    return Row(
+      children: [
+        Expanded(
+            child: Container(
+          height: 50.w,
+          color: Colors.grey,
+          child: const Center(child: Text('data')),
+        )),
+        Expanded(
+            child: Container(
+          height: 50.w,
+          color: Colors.grey,
+          child: const Center(child: Text('data')),
+        )),
       ],
     );
   }
 }
+
+/*AnimatedContainer(
+          height: 301.w,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFFF5F2F7), // 开始颜色
+                Color(0xFFD8E2F5), // 中间颜色
+                Color(0xFFE2FEF3), // 结束颜色
+              ],
+              stops: [0.0, 0.5, 1.0], // 颜色停靠点，与中心颜色对应
+            ),
+            // 这里设置所有角的半径为0
+            borderRadius: BorderRadius.zero,
+          ),
+          duration: const Duration(microseconds: 1),
+        ),*/
