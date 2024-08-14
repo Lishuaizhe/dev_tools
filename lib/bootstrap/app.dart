@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
 
 import '../config/config_theme_utils.dart';
 import '../framework/module/build/annotations.dart';
@@ -32,7 +34,19 @@ void runAppLocation(VoidCallback runApp) {
 }
 
 void initGetX() {
-  Get.config(defaultTransition: Transition.cupertino);
+  Transition? transition;
+  if (GetPlatform.isAndroid) {
+    // 使用Android原生动画
+    transition = Transition.rightToLeft;
+  } else if (GetPlatform.isIOS) {
+    // 使用iOS风格的Cupertino动画
+    transition = Transition.cupertino;
+  }
+
+  Get.config(
+    defaultTransition: transition, //跳转样式
+    enableLog: kDebugMode, //开启日志
+  );
 }
 
 void systemUi() {
@@ -64,7 +78,8 @@ class AppContext extends GetxService {
   final List<GetPage> routers = [];
 
   final _appReady = false.obs;
-  final _initReady = false.obs;
+
+  // final _initReady = false.obs;
 
   Future<AppContext> init() async {
     _initModuleList(); // 初始化模块

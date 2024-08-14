@@ -1,11 +1,12 @@
 import 'package:bruno/bruno.dart';
-import 'package:dev_tools/app/my/pages/my/logic.dart';
-import 'package:dev_tools/app/one/pages/one/logic.dart';
+import 'package:dev_tools/app/about/pages/about_home/about_home_logic.dart';
+import 'package:dev_tools/app/information/pages/information_home/information_home_logic.dart';
+import 'package:dev_tools/app/knowledge/pages/knowledge_home/knowledge_home_logic.dart';
+import 'package:dev_tools/app/video/pages/video_home/video_home_logic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../tools/pages/tools/logic.dart';
 import 'state.dart';
 
 class HomeLogic extends FullLifeCycleController with FullLifeCycleMixin {
@@ -17,7 +18,6 @@ class HomeLogic extends FullLifeCycleController with FullLifeCycleMixin {
   void onInit() {
     super.onInit();
     initLogic();
-    initBrnBottomTabBarItemList();
     pageController.addListener(() {
       state.tagIndex.value = pageController.page!.toInt();
     });
@@ -33,67 +33,35 @@ class HomeLogic extends FullLifeCycleController with FullLifeCycleMixin {
   }
 
   @override
-  void onDetached() {
-    // TODO: implement onDetached
-  }
+  void onDetached() {}
 
   @override
-  void onHidden() {
-    // TODO: implement onHidden
-  }
+  void onHidden() {}
 
   @override
-  void onInactive() {
-    // TODO: implement onInactive
-  }
+  void onInactive() {}
 
   @override
-  void onPaused() {
-    // TODO: implement onPaused
-  }
+  void onPaused() {}
 
   @override
-  void onResumed() {
-    // TODO: implement onResumed
-  }
+  void onResumed() {}
 
   void initBrnBottomTabBarItemList() {
     state.tabItems.add(
-      BrnBottomTabBarItem(
-        icon: const Icon(Icons.cloud),
-        title: Text(
-          "首页",
-          style: TextStyle(fontSize: 14.sp),
-        ),
+      const BrnBottomTabBarItem(
+        icon: Icon(Icons.explore_rounded),
+        title: Text("Explore"),
       ),
     );
     state.tabItems.add(
-      BrnBottomTabBarItem(
-        icon: const Icon(Icons.build),
-        title: Text(
-          "工具",
-          style: TextStyle(fontSize: 14.sp),
-        ),
-      ),
-    );
-    state.tabItems.add(
-      BrnBottomTabBarItem(
-        icon: const Icon(Icons.adb),
-        title: Text(
-          "我的",
-          style: TextStyle(fontSize: 14.sp),
-        ),
-        // badge: Container(
-        //   width: 5.w,
-        //   height: 5.w,
-        //   decoration: BoxDecoration(
-        //     color: Colors.redAccent,
-        //     borderRadius: BorderRadius.circular(10),
-        //   ),
-        // ).marginOnly(right: 40.w, top: 4.w),
+      const BrnBottomTabBarItem(
+        icon: Icon(Icons.my_library_books),
+        title: Text("Library"),
       ),
     );
   }
+
 
   void onBottomTabBarTap(int value) {
     state.tagIndex.value = value;
@@ -105,14 +73,16 @@ class HomeLogic extends FullLifeCycleController with FullLifeCycleMixin {
   }
 
   void initLogic() {
-    Get.lazyPut(() => OneLogic());
-    Get.lazyPut(() => ToolsLogic());
-    Get.lazyPut(() => MyLogic());
+    Get.lazyPut(() => InformationHomeLogic());
+    Get.lazyPut(() => VideoHomeLogic());
+    Get.lazyPut(() => KnowledgeHomeLogic());
+    Get.lazyPut(() => AboutHomeLogic());
   }
 
   void deleteLogic() {
-    Get.delete<OneLogic>();
-    Get.delete<ToolsLogic>();
-    Get.delete<MyLogic>();
+    Get.delete<InformationHomeLogic>();
+    Get.delete<VideoHomeLogic>();
+    Get.delete<KnowledgeHomeLogic>();
+    Get.delete<AboutHomeLogic>();
   }
 }

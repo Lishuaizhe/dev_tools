@@ -1,3 +1,4 @@
+import 'package:bruno/bruno.dart';
 import 'package:dev_tools/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,12 +8,13 @@ import 'app/main/pages/unknown_route/binding.dart';
 import 'app/main/pages/unknown_route/view.dart';
 import 'bootstrap/app.dart';
 import 'config/brn_localization_delegate.dart';
+import 'config/config_theme_utils.dart';
 import 'config/theme_data_app.dart';
 import 'utils/log.dart';
 
 void main() {
   runAppLocation(() {
-    runApp(const MyApp());
+    runApp(const MyApp()); 
   });
 }
 
@@ -21,7 +23,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return _screenUtilInit(
       child: GetMaterialApp(
         title: 'FlutterDevs',
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         initialRoute: Routes.home,
         getPages: AppContext.to.routers,
         unknownRoute: _unknownRoute(),
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: _localizationsDelegates(),
         logWriterCallback: _logWriterCallback,
         onReady: _onReady,

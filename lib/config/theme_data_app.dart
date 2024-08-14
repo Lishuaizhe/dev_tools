@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ThemeDateApp {
-
   /// 亮色主题
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.blue,
-      brightness: Brightness.light,
-    ),
+    // colorScheme: ColorScheme.fromSeed(
+      // seedColor: Colors.white,
+      // primary: Colors.orange,
+      // brightness: Brightness.light,
+    // ),
   );
 
   /// 暗色主题
@@ -17,7 +17,8 @@ class ThemeDateApp {
     brightness: Brightness.dark,
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.blue,
+      seedColor: Colors.orange,
+      primary: Colors.orange,
       brightness: Brightness.dark,
     ),
   );

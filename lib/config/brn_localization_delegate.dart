@@ -6,7 +6,6 @@ import 'package:bruno/bruno.dart';
 class MyBrnLocalizationDelegate extends BrnLocalizationDelegate {
   @override
   Future<BrnIntl> load(Locale locale) {
-    return super.load(const Locale('zh', 'Hans_CN'),);
-    // return super.load(locale);
+    return super.load(const Locale('zh', 'Hans_CN'));
   }
 }
