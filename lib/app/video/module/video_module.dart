@@ -9,6 +9,6 @@ import 'package:dev_tools/framework/module/module.dart';
 
 @AppModule(priority: modulePriorityDefault)
 class VideoModule extends Module {
-   VideoModule({ int priority = 0})
-      : super(name: "video", priority: priority);
+   VideoModule({ super.priority})
+      : super(name: "video");
 }

@@ -12,7 +12,7 @@ class ResourceMeetingPage extends StatelessWidget {
   final ResourceMeetingLogic logic = Get.put(ResourceMeetingLogic());
   final ResourceMeetingState state = Get.find<ResourceMeetingLogic>().state;
 
-  ResourceMeetingPage({Key? key}) : super(key: key);
+  ResourceMeetingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class ResourceMeetingPage extends StatelessWidget {
   Expanded TimeListItem() {
     return Expanded(
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 2,
         ),
@@ -159,12 +159,12 @@ class ResourceMeetingPage extends StatelessWidget {
               onTap: () => logic.selectDate(context),
               child: Obx(() => Text(
                     logic.selectedDate.value,
-                    style: TextStyle(fontSize: 16.0),
+                    style: const TextStyle(fontSize: 16.0),
                   )),
             ),
           ),
           IconButton(
-            icon: Icon(Icons.calendar_today),
+            icon: const Icon(Icons.calendar_today),
             onPressed: () => logic.selectDate(context),
           ),
         ],

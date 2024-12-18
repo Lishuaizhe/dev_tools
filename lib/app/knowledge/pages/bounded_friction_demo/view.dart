@@ -64,7 +64,7 @@ class _BoundedFrictionDemoState extends State<BoundedFrictionDemo>
               width: 100,
               height: 100,
               color: Colors.blue,
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Drag Me',
                   style: TextStyle(color: Colors.white),

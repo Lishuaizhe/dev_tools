@@ -149,6 +149,7 @@ class KnowledgeHomePage extends StatelessWidget {
     );
   }
 
+/*  
   Widget _timoAi() {
     return Container(
       height: 22.w,
@@ -174,7 +175,7 @@ class KnowledgeHomePage extends StatelessWidget {
       ),
     );
   }
-
+*/
   Container searchText() {
     return Container(
       margin: EdgeInsets.symmetric(
@@ -212,7 +213,7 @@ class KnowledgeHomePage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: Stack(
         children: [
-          Positioned(left: 0, top: 10, child: AnimatedBanner()),
+          const Positioned(left: 0, top: 10, child: AnimatedBanner()),
           Center(
             child: Image.asset(
               'assets/images/knowledge/home_page_login.png',

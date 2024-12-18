@@ -9,8 +9,8 @@ import 'package:dev_tools/framework/module/module.dart';
 
 @AppModule(priority: modulePriorityDefault)
 class AboutModule extends Module {
-   AboutModule({ int priority = 0})
-      : super(name: "about", priority: priority);
+   AboutModule({ super.priority})
+      : super(name: "about");
 
 
 

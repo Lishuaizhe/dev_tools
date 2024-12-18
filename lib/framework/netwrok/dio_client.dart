@@ -32,7 +32,7 @@ class DioClient {
         // 处理响应
         return handler.next(response);
       },
-      onError: (DioError e, handler) {
+      onError: (DioException e, handler) {
         // 处理错误
         return handler.next(e);
       },

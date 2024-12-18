@@ -16,7 +16,7 @@ class AboutHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       top: false,
       child: Stack(
         children: [
@@ -39,17 +39,18 @@ class AboutHomePage extends StatelessWidget {
           //       ),
           //     ];
           //   },
-            // body: TabBarView(
-            //   controller: logic.tabController,
-            //   children: [
-            //     Text('data'),
-            //     Text('data'),
-            //   ],
-            // ),
+          // body: TabBarView(
+          //   controller: logic.tabController,
+          //   children: [
+          //     Text('data'),
+          //     Text('data'),
+          //   ],
+          // ),
           // ),
         ],
       ),
     );
+    /* 
     return Container(
       color: Colors.greenAccent,
       child: SafeArea(
@@ -86,6 +87,7 @@ class AboutHomePage extends StatelessWidget {
         ),
       ),
     );
+   */
   }
 
   Widget heardAbout() {

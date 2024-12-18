@@ -56,8 +56,6 @@ class EnUnderlineTabIndicator extends Decoration {
   // }
 
   Rect _indicatorRectFor(Rect rect, TextDirection textDirection) {
-    assert(rect != null);
-    assert(textDirection != null);
     final Rect indicator = insets.resolve(textDirection).deflateRect(rect);
     double wantWidth = 28;
     double cw = (indicator.left + indicator.right)/2;
@@ -115,7 +113,6 @@ class _UnderlinePainter extends BoxPainter {
     //   canvas.drawLine(indicator.bottomLeft, indicator.bottomRight, paint);
     // }
 
-    assert(configuration != null);
     assert(configuration.size != null);
     final Rect rect = offset & configuration.size!;
     final TextDirection textDirection = configuration.textDirection!;

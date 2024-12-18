@@ -4,7 +4,6 @@ import 'package:dev_tools/app/information/pages/information_home/information_hom
 import 'package:dev_tools/app/knowledge/pages/knowledge_home/knowledge_home_logic.dart';
 import 'package:dev_tools/app/video/pages/video_home/video_home_logic.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'state.dart';

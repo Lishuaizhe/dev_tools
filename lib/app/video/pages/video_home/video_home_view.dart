@@ -15,15 +15,15 @@ class VideoHomePage extends StatelessWidget {
   final logic = Get.find<VideoHomeLogic>();
   final state = Get.find<VideoHomeLogic>().state;
 
-  var _currentValue = 50.0.obs;
+  // final _currentValue = 50.0.obs;
 
   late BuildContext _context;
 
-  var _isDragging = false.obs;
+  // final _isDragging = false.obs;
 
-  void _onProgressChanged(double progress) {
-    _isDragging.value = progress != 0.0 && progress != 1.0;
-  }
+  // void _onProgressChanged(double progress) {
+  //   _isDragging.value = progress != 0.0 && progress != 1.0;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +32,18 @@ class VideoHomePage extends StatelessWidget {
       // extendBodyBehindAppBar: true,
       appBar: AppBar(
         flexibleSpace: Center(
-          child: TabBar(
-            controller: logic.pageController,
-            isScrollable: false,
-            tabs: const [
-              Tab(text: "广告"),
-              Tab(text: "直播"),
-              Tab(text: "视频"),
-            ],
-          ),
+          // child: TabBar(
+          //   controller: logic.pageController,
+          //   isScrollable: false,
+          //   tabs: const [
+          //     Tab(text: "广告"),
+          //     Tab(text: "直播"),
+          //     Tab(text: "视频"),
+          //   ],
+          // ),
         ),
       ),
-      body: bodyView(),
+      // body: bodyView(),
     );
   }
 
@@ -64,7 +64,7 @@ class VideoHomePage extends StatelessWidget {
             ),
           ),
         ),
-        gestureDetectorTypeTow(),
+        // gestureDetectorTypeTow(),
       ],
     );
   }
@@ -90,15 +90,15 @@ class VideoHomePage extends StatelessWidget {
       top: true,
       child: Stack(
         children: [
-          _voidPlay(),
-          _play_pase_view(),
+          // _voidPlay(),
+          playPaseView(),
           Obx(_slider),
         ],
       ),
     );
   }
 
-  CustomGestureDetector _play_pase_view() {
+  CustomGestureDetector playPaseView() {
     return CustomGestureDetector(
       onLeftSwipe: () {
         // Get.toNamed(Routes.videoPlayerScreenPage);
@@ -117,13 +117,13 @@ class VideoHomePage extends StatelessWidget {
     );
   }
 
-  Widget _voidPlay() {
-    return Center(
-      child: VideoPlayer(
-        logic.videoPlayerController,
-      ),
-    );
-  }
+  // Widget _voidPlay() {
+  //   return Center(
+  //     child: VideoPlayer(
+  //       logic.videoPlayerController,
+  //     ),
+  //   );
+  // }
 
   Widget _slider() => Positioned(
         bottom: 20,
@@ -174,7 +174,7 @@ class VideoHomePage extends StatelessWidget {
 class ProgressBar extends StatefulWidget {
   final Function(double) onProgressChanged;
 
-  ProgressBar({required this.onProgressChanged});
+  const ProgressBar({super.key, required this.onProgressChanged});
 
   @override
   _ProgressBarState createState() => _ProgressBarState();
@@ -215,7 +215,7 @@ class _ProgressBarState extends State<ProgressBar> {
 class VideoPlayerWidget extends StatelessWidget {
   final bool isDragging;
 
-  VideoPlayerWidget({required this.isDragging});
+  const VideoPlayerWidget({super.key, required this.isDragging});
 
   @override
   Widget build(BuildContext context) {

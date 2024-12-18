@@ -54,8 +54,8 @@ class EnImage extends StatelessWidget {
                 if (loadingProgress == null) {
                   return child;
                 } else {
-                  return Center(
-                    child: const CircularProgressIndicator(),
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
                 }
               },
@@ -64,7 +64,7 @@ class EnImage extends StatelessWidget {
                   width: width,
                   height: height,
                   color: Colors.grey[300],
-                  child: Icon(
+                  child: const Icon(
                     Icons.error,
                     color: Colors.red,
                   ),
