@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:isolate';
 
 import 'package:bruno/bruno.dart';
 import 'package:flutter/foundation.dart';
@@ -22,6 +23,7 @@ void runAppLocation(VoidCallback runApp) {
     initBruno();
     systemUi();
     initGetX();
+    // isolateUserAppDate()
     initEasyRefresh();
     _initService();
     runApp.call();
@@ -29,6 +31,26 @@ void runAppLocation(VoidCallback runApp) {
     if (kDebugMode) {
       print("runMyApp error:$error, $stack");
     }
+  });
+}
+
+void doTask(List params) async {
+  //params 就是 spawn方法的第二个参数
+  var sendPort = params[0];
+  var token = params[1];
+
+  /// 注册 root isolaote 保证在子Isolate中可以调用Channel
+  BackgroundIsolateBinaryMessenger.ensureInitialized(token);
+  //发送消息到主Isolate
+  sendPort.send("Hello, I'm from isolate");
+}
+
+void isolateUserAppDate() {
+  ReceivePort receivePort = ReceivePort();
+  RootIsolateToken rootIsolateToken = RootIsolateToken.instance!;
+  Isolate.spawn(doTask, [receivePort.sendPort, rootIsolateToken]);
+  receivePort.listen((message) {
+    print("isolateUserAppDate message:$message");
   });
 }
 

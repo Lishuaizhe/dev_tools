@@ -16,10 +16,17 @@ class Routes {
   static const String knowledge2048 = '/knowledge/game2048';
   static const String meeting = '/knowledge/Meeting';
   static const String resourceMeeting = '/knowledge/resourceMeeting';
-  static const String boundedFrictionDemoPage = '/knowledge/boundedFrictionDemoPage';
+  static const String boundedFrictionDemoPage =
+      '/knowledge/boundedFrictionDemoPage';
   static const String sliverDemoPage = '/knowledge/SliverDemoPage';
-  static const String videoPlayerScreenPage = '/knowledge/VideoPlayerScreenPage';
+  static const String videoPlayerScreenPage =
+      '/knowledge/VideoPlayerScreenPage';
   static const String tabPageViewPage = '/knowledge/TabPageViewPage';
 
-/*==========================  MY  ====================================*/
+  /*==========================  MY  ====================================*/
+
+  static const String myHome = '/my/home';
+  static const String myDetails = '/my/details';
+  static const String myAdd = '/my/add';
+  static const String mySearch = '/my/search';
 }
